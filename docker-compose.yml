@@ -1,0 +1,9 @@
+version: "2.4"
+
+services:
+  oracle-library:
+    image: ghcr.io/jeoliveira045/oracle-db
+    ports:
+      - 1521:1521
+    volumes:
+      - ./src/main/resources/docker:/docker-entrypoint-initdb.d/startup
