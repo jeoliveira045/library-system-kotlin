@@ -11,10 +11,10 @@ class AuthorSpecification {
 
     companion object{
         public fun byBookId(id: Long): Specification<Author>{
-            return Specification<Author> {root, query, criteriaBuilder ->
+            return Specification<Author> {root, cq, cb ->
                 val authorBookJoin: Join<Author, Book> = root.join("bookList")
                 val authorBookJoinPath: Path<Join<Author, Book>> = authorBookJoin.get("id")
-                criteriaBuilder.equal(authorBookJoinPath, id)
+                cb.equal(authorBookJoinPath, id)
             }
         }
 
