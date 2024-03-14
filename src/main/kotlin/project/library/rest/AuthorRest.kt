@@ -29,7 +29,12 @@ class AuthorRest {
 
     @GetMapping("/bybook/{id}")
     fun findAllByBook(@PathVariable id: Long): ResponseEntity<List<Author>>{
-        return ResponseEntity.ok(repository.findAll(Companion.byId(id)))
+        return ResponseEntity.ok(repository.findAll(Companion.byBookId(id)))
+    }
+
+    @GetMapping("/bybooktype/{booktype}")
+    fun findAllByBookType(@PathVariable booktype: String): ResponseEntity<List<Author>>{
+        return ResponseEntity.ok(repository.findAll(Companion.byBookType(booktype)))
     }
 
     @GetMapping("/{id}")
