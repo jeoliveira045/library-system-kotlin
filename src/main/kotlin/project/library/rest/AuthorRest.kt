@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import project.library.entities.Author
 import project.library.repository.AuthorRepository
+import project.library.repository.specification.AuthorSpecification.Companion
 
 @RestController
 @RequestMapping("/author")
@@ -24,6 +25,11 @@ class AuthorRest {
     @GetMapping
     fun findAll(): ResponseEntity<List<Author>>{
         return ResponseEntity.ok(repository.findAll());
+    }
+
+    @GetMapping("/bybook/{id}")
+    fun findAllByBook(@PathVariable id: Long): ResponseEntity<List<Author>>{
+        return ResponseEntity.ok(repository.findAll(Companion.byId(id)))
     }
 
     @GetMapping("/{id}")
